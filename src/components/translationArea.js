@@ -6,7 +6,7 @@ export default function TranslationArea() {
     <>
       <div className="rowC">
         <TextBox isReadOnly={false} />
-        <TextBox isReadOnly={true} />
+        {/* <TextBox isReadOnly={true} /> */}
       </div>
     </>
   );

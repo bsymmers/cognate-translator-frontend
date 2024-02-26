@@ -12,3 +12,17 @@ textarea {
     top: 20;
     padding-top: 10%;
 }
+
+button[value=true] {
+    display: none;
+}
+
+.row {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:row;
+    gap: 100px;
+ 
+}
+
