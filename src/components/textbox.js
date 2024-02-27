@@ -4,11 +4,11 @@ import LanguageSelect from "./languageSelect";
 import "./textbox.css";
 
 export default function TextBox({ status = "empty", isReadOnly }) {
-  const [language, setLanguage] = useState("Spanish");
+  const [source, setSource] = useState("Spanish");
+  const [target, setTarget] = useState("English");
 
-  const languageHandler = (l) => {
-    setLanguage(l);
-    console.log("Language is:", language);
+  const languageHandler = (l, s) => {
+    s === "selectedSource" ? setSource(l) : setTarget(l);
   };
 
   const submitHandler = (e) => {
@@ -16,8 +16,8 @@ export default function TextBox({ status = "empty", isReadOnly }) {
     console.log(e.target);
     const form = e.target;
     const formData = new FormData(form);
-    formData.append("Source", language);
-    formData.append("Target", "English");
+    formData.append("Source", source);
+    formData.append("Target", target);
 
     console.log("Sending", Object.fromEntries(formData.entries()));
 
@@ -29,7 +29,6 @@ export default function TextBox({ status = "empty", isReadOnly }) {
 
     console.log(response);
   };
-  // TODO: Add in target language support
 
   return (
     <div className="wrapper">
@@ -37,12 +36,12 @@ export default function TextBox({ status = "empty", isReadOnly }) {
         <LanguageSelect
           id="Source"
           retLanguage={languageHandler}
-          isReadOnly={false}
+          type="Source"
         />
         <LanguageSelect
           id="Target"
           retLanguage={languageHandler}
-          isReadOnly={true}
+          type="Target"
         />
       </div>
       <div id="Textbox">
