@@ -8,9 +8,10 @@ textarea {
 }
 
 #Textbox {
-    position: absolute;
-    top: 20;
-    padding-top: 10%;
+    /* position: absolute;
+    top: 20; */
+    padding-top: 20px;
+    align-items: center;
 }
 
 button[value=true] {
@@ -23,6 +24,12 @@ button[value=true] {
     justify-content: center;
     flex-direction:row;
     gap: 100px;
- 
 }
 
+Textarea {
+    resize: vertical; max-width: 500px;
+}
+
+button {
+    padding-left: 155px;
+}

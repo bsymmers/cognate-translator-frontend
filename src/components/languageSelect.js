@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Select } from "@chakra-ui/react";
 
 import "./languageSelect.css";
 export default function LanguageSelect({ retLanguage, type }) {
@@ -8,7 +9,7 @@ export default function LanguageSelect({ retLanguage, type }) {
     return val;
   };
 
-  const [value, setValue] = useState(getInitialState);
+  const [, setValue] = useState(getInitialState);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -17,18 +18,16 @@ export default function LanguageSelect({ retLanguage, type }) {
 
   return (
     <div className="LanguageSelect">
-      <label>
-        Pick the {type} language:
-        <select
-          name="selectedLanguage"
-          defaultValue={value}
-          onChange={handleChange}
-          id={type === "Target" ? "selectedTarget" : "selectedSource"}
-        >
-          <option value="Spanish">Spanish</option>
-          <option value="English">English</option>
-        </select>
-      </label>
+      <Select
+        placeholder="Select Language"
+        name="selectedLanguage"
+        // defaultValue={value}
+        onChange={handleChange}
+        id={type === "Target" ? "selectedTarget" : "selectedSource"}
+      >
+        <option value="Spanish">Spanish</option>
+        <option value="English">English</option>
+      </Select>
     </div>
   );
 }

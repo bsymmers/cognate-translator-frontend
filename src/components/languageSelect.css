@@ -1,3 +1,11 @@
 select {
     margin-left: 10px;
 }
+
+.LanguageSelect {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:row;
+    gap: 100px;
+}

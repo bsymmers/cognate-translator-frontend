@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import LanguageSelect from "./languageSelect";
+import { Textarea, Button, Icon } from "@chakra-ui/react";
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import "./textbox.css";
 
 export default function TextBox({ status = "empty", isReadOnly }) {
@@ -38,6 +40,7 @@ export default function TextBox({ status = "empty", isReadOnly }) {
           retLanguage={languageHandler}
           type="Source"
         />
+        <Icon as={FaArrowRightArrowLeft} color="grey" />
         <LanguageSelect
           id="Target"
           retLanguage={languageHandler}
@@ -47,13 +50,13 @@ export default function TextBox({ status = "empty", isReadOnly }) {
       <div id="Textbox">
         <form method="post" onSubmit={submitHandler}>
           <div className="row">
-            <textarea name="postContent" readOnly={false} />
-            <textarea readOnly={true} />
+            <Textarea name="postContent" readOnly={false} />
+            <Textarea readOnly={true} />
           </div>
           <br />
-          <button type="submit" value={isReadOnly}>
+          <Button type="submit" colorScheme="teal" size="sm" value={isReadOnly}>
             Translate
-          </button>
+          </Button>
         </form>
       </div>
     </div>

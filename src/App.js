@@ -1,14 +1,15 @@
 // import logo from './logo.svg';
-import React from 'react';
-import './App.css';
-import TranslationArea from './components/translationArea';
+import React from "react";
+import "./App.css";
+import TranslationArea from "./components/translationArea";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
   return (
-    <div>
-      <TranslationArea/>
-      </div>
-    
+    <ChakraProvider>
+      <TranslationArea />
+    </ChakraProvider>
+
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
