@@ -19,8 +19,9 @@ export default function LanguageSelect({ retLanguage, type }) {
   return (
     <div className="LanguageSelect">
       <Select
-        placeholder="Select Language"
+        placeholder={type}
         name="selectedLanguage"
+        variant="filled"
         // defaultValue={value}
         onChange={handleChange}
         id={type === "Target" ? "selectedTarget" : "selectedSource"}

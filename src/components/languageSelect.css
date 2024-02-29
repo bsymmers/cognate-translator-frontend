@@ -1,11 +1,16 @@
-select {
+/* select {
     margin-left: 10px;
-}
+} */
 
-.LanguageSelect {
-    display:flex;
-    align-items: center;
-    justify-content: center;
+/* .LanguageSelect { */
+    /* display:flex;
+    align-items: center; */
+    /* justify-content: center;
+    justify-content: space-between;
     flex-direction:row;
-    gap: 100px;
-}
+    /* gap: 100px;
+/* } */
+
+/* Select {
+    width: 90%;
+} */
