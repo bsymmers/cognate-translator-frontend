@@ -1,28 +1,48 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import LanguageSelect from "./languageSelect";
-import { Textarea, Button, Icon, Heading } from "@chakra-ui/react";
+import { Textarea, Button, Icon, Divider } from "@chakra-ui/react";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import TitleHeader from "./titleHeader";
 import "./textbox.css";
 
 export default function TextBox({ status = "empty", isReadOnly }) {
   const [source, setSource] = useState("Spanish");
   const [target, setTarget] = useState("English");
   const [taResponse, setTaResponse] = useState(undefined);
+  const [languageList, setLanguageList] = useState([
+    "Spanish",
+    "English",
+    "Italian",
+    "French",
+  ]);
+  const lanCompatability = {
+    English: ["Spanish", "Italian", "French"],
+    Italian: ["English"],
+    French: ["English"],
+    Spanish: ["English"],
+  };
 
   const languageHandler = (l, s) => {
-    s === "selectedSource" ? setSource(l) : setTarget(l);
+    if (s === "selectedSource") {
+      setSource(l);
+      setLanguageList(lanCompatability[l]);
+    } else if (s === "selectedTarget") {
+      setTarget(l);
+    }
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    setTaResponse("loading");
     const form = e.target;
     const formData = new FormData(form);
     formData.append("Source", source);
     formData.append("Target", target);
 
-    // console.log("Sending", Object.fromEntries(formData.entries()));
+    //TODO: proper handling of post request if proper things aren't connected
+    //add highlighting for changed words https://www.npmjs.com/package/react-highlight-within-textarea
+    // add to backend the sliding scale of adding prepositions
 
     fetch("http://localhost:8080/sourceText", {
       method: "POST",
@@ -35,44 +55,48 @@ export default function TextBox({ status = "empty", isReadOnly }) {
       .then((data) => {
         setTaResponse(data);
       });
-    // const content = response.json();
-    // setTaResponse(content);
-    // console.log(response.json());
   };
 
   return (
     <div className="wrapper">
-      <Heading className="Title">Spanglish Translator</Heading>
+      <TitleHeader />
+      <Divider />
       <div className="LanguageSelect">
         <LanguageSelect
           id="Source"
           retLanguage={languageHandler}
           type="Source"
+          languageList={["Spanish", "English", "Italian", "French"]}
         />
         <Icon as={FaArrowRightArrowLeft} color="grey" />
         <LanguageSelect
           id="Target"
           retLanguage={languageHandler}
           type="Target"
+          languageList={languageList}
         />
       </div>
-      {/* <div className="Textbox"> */}
       <form method="post" onSubmit={submitHandler}>
         <div className="row">
           <Textarea name="postContent" readOnly={false} />
           <Textarea
-            isDisabled={taResponse === undefined}
+            isDisabled={(taResponse === undefined) | (taResponse === "loading")}
             readOnly={true}
             placeholder="Translation"
             value={taResponse}
           />
         </div>
         <br />
-        <Button type="submit" colorScheme="teal" size="sm" value={isReadOnly}>
+        <Button
+          type="submit"
+          colorScheme="teal"
+          size="sm"
+          isLoading={taResponse === "loading"}
+          value={isReadOnly}
+        >
           Translate
         </Button>
       </form>
-      {/* </div> */}
     </div>
   );
 }

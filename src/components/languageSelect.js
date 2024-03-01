@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { Select } from "@chakra-ui/react";
 
 import "./languageSelect.css";
-export default function LanguageSelect({ retLanguage, type }) {
+export default function LanguageSelect({ retLanguage, type, languageList }) {
   const getInitialState = () => {
+    // TODO: Change to undefined as initial state
     const val = type === "Target" ? "English" : "Spanish";
     return val;
   };
@@ -16,6 +17,14 @@ export default function LanguageSelect({ retLanguage, type }) {
     retLanguage(e.target.value, e.target.id);
   };
 
+  const mapDropdown = languageList.map((x) => {
+    return (
+      <option key={x} value={x}>
+        {x}
+      </option>
+    );
+  });
+
   return (
     <div className="LanguageSelect">
       <Select
@@ -26,8 +35,7 @@ export default function LanguageSelect({ retLanguage, type }) {
         onChange={handleChange}
         id={type === "Target" ? "selectedTarget" : "selectedSource"}
       >
-        <option value="Spanish">Spanish</option>
-        <option value="English">English</option>
+        {mapDropdown}
       </Select>
     </div>
   );
@@ -36,4 +44,5 @@ export default function LanguageSelect({ retLanguage, type }) {
 LanguageSelect.propTypes = {
   retLanguage: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
+  languageList: PropTypes.array,
 };

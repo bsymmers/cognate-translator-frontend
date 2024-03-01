@@ -37,7 +37,22 @@ form {
     width: 90%;
 }
 
-h2 {
-    align-self: flex-start;
+
+hr {
     margin-bottom: 25px;
+}
+
+.header {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.flags {
+    display: flex;
+    flex-direction: row;
+    gap: 5px
 }
