@@ -50,6 +50,9 @@ export default function TextBox({ status = "empty", isReadOnly }) {
       body: formData,
     })
       .then((response) => {
+        if (response.status === 400) {
+          return "Invalid";
+        }
         return response.text();
       })
       .then((data) => {
@@ -81,9 +84,14 @@ export default function TextBox({ status = "empty", isReadOnly }) {
           <Textarea name="postContent" readOnly={false} />
           <Textarea
             isDisabled={(taResponse === undefined) | (taResponse === "loading")}
+            isInvalid={taResponse === "Invalid"}
             readOnly={true}
             placeholder="Translation"
-            value={taResponse}
+            value={
+              taResponse === "Invalid"
+                ? "Invalid Source or Target Language"
+                : taResponse
+            }
           />
         </div>
         <br />
