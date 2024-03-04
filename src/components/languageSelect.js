@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Select } from "@chakra-ui/react";
 
-import "./languageSelect.css";
 export default function LanguageSelect({ retLanguage, type, languageList }) {
   const getInitialState = () => {
     // TODO: Change to undefined as initial state

@@ -1,20 +1,35 @@
 
-.wrapper {
-    /* position: relative; */
+/* .wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
+} */
+.wrapper{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    /* justify-content: space-evenly; */
     align-items: center;
 }
 
 .row {
     /* position: absolute;
     top: 20; */
+    height: 100%;
+    width: 100%;
     display: flex;
-    padding-top: 20px;
-    justify-content:space-between;
-    align-items: center;
-    gap: 17%;;
+    /* padding-top: 20px; */
+    /* justify-content:space-between; */
+    align-items:flex-start;
+    gap: 5%;
 }
 
 button[value=true] {
@@ -22,12 +37,12 @@ button[value=true] {
 }
 
 
-button {
-    padding-left: 155px;
+#translatebutton {
+    width: 15%;
 }
 
 .LanguageSelect {
-    width: 60%;
+    /* width: 40%; */
     display:flex;
     align-items: center;
     gap: 11%;
@@ -35,6 +50,7 @@ button {
 
 form {
     width: 90%;
+    height: 70%;
 }
 
 
@@ -49,10 +65,33 @@ hr {
     align-items: center;
     margin-bottom: 5px;
     margin-top: 5px;
+    margin-right: 1%;
 }
 
 .flags {
     display: flex;
     flex-direction: row;
-    gap: 5px
+    gap: 5px;
+    width:auto;
+    align-self: center;
+}
+
+.talabel{
+display: flex;
+flex-direction: column;
+width: 100%;
+height: 100%;
+gap: 10px;
+}
+
+textarea[name="postContent"] {
+    width: 100%;
+    height: 30%;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    width: 50%;
 }

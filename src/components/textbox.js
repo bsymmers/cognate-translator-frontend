@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import LanguageSelect from "./languageSelect";
-import { Textarea, Button, Icon, Divider } from "@chakra-ui/react";
-import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import { Textarea, Button, Divider, Icon } from "@chakra-ui/react";
+import { FaArrowRightLong } from "react-icons/fa6";
 import TitleHeader from "./titleHeader";
 import "./textbox.css";
 
@@ -64,46 +64,52 @@ export default function TextBox({ status = "empty", isReadOnly }) {
     <div className="wrapper">
       <TitleHeader />
       <Divider />
-      <div className="LanguageSelect">
-        <LanguageSelect
-          id="Source"
-          retLanguage={languageHandler}
-          type="Source"
-          languageList={["Spanish", "English", "Italian", "French"]}
-        />
-        <Icon as={FaArrowRightArrowLeft} color="grey" />
-        <LanguageSelect
-          id="Target"
-          retLanguage={languageHandler}
-          type="Target"
-          languageList={languageList}
-        />
-      </div>
       <form method="post" onSubmit={submitHandler}>
         <div className="row">
-          <Textarea name="postContent" readOnly={false} />
-          <Textarea
-            isDisabled={(taResponse === undefined) | (taResponse === "loading")}
-            isInvalid={taResponse === "Invalid"}
-            readOnly={true}
-            placeholder="Translation"
-            value={
-              taResponse === "Invalid"
-                ? "Invalid Source or Target Language"
-                : taResponse
-            }
-          />
+          <div className="talabel">
+            <LanguageSelect
+              id="Source"
+              retLanguage={languageHandler}
+              type="Source"
+              languageList={["Spanish", "English", "Italian", "French"]}
+            />
+            <Textarea name="postContent" readOnly={false} />
+            <Button
+              type="submit"
+              colorScheme="teal"
+              size="sm"
+              isLoading={taResponse === "loading"}
+              value={isReadOnly}
+              id="translatebutton"
+            >
+              Translate
+            </Button>
+          </div>
+          <Icon as={FaArrowRightLong} color="grey" boxSize={8} />
+          <div className="talabel">
+            <LanguageSelect
+              id="Target"
+              retLanguage={languageHandler}
+              type="Target"
+              languageList={languageList}
+            />
+            <Textarea
+              name="postContent"
+              isDisabled={
+                (taResponse === undefined) | (taResponse === "loading")
+              }
+              isInvalid={taResponse === "Invalid"}
+              readOnly={true}
+              placeholder="Translation"
+              value={
+                taResponse === "Invalid"
+                  ? "Invalid Source or Target Language"
+                  : taResponse
+              }
+            />
+          </div>
         </div>
-        <br />
-        <Button
-          type="submit"
-          colorScheme="teal"
-          size="sm"
-          isLoading={taResponse === "loading"}
-          value={isReadOnly}
-        >
-          Translate
-        </Button>
+        {/* <br /> */}
       </form>
     </div>
   );
