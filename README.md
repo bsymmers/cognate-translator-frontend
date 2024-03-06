@@ -1,4 +1,5 @@
 # Cognate Translator Frontend
+[Backend](https://github.com/bsymmers/cognate-translator-backend)
 
 ## Available Scripts
 
