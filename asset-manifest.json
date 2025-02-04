@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cognate-translator-frontend/static/css/main.18a74013.css",
+    "main.js": "/cognate-translator-frontend/static/js/main.5bcc97fe.js",
+    "static/js/453.18141239.chunk.js": "/cognate-translator-frontend/static/js/453.18141239.chunk.js",
+    "index.html": "/cognate-translator-frontend/index.html",
+    "main.18a74013.css.map": "/cognate-translator-frontend/static/css/main.18a74013.css.map",
+    "main.5bcc97fe.js.map": "/cognate-translator-frontend/static/js/main.5bcc97fe.js.map",
+    "453.18141239.chunk.js.map": "/cognate-translator-frontend/static/js/453.18141239.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18a74013.css",
+    "static/js/main.5bcc97fe.js"
+  ]
+}
