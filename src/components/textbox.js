@@ -35,28 +35,45 @@ export default function TextBox({ status = "empty", isReadOnly }) {
   const submitHandler = (e) => {
     e.preventDefault();
     setTaResponse("loading");
-    const form = e.target;
-    const formData = new FormData(form);
-    formData.append("Source", source);
-    formData.append("Target", target);
+    // const form = e.target;
 
-    //TODO: proper handling of post request if proper things aren't connected
-    //add highlighting for changed words https://www.npmjs.com/package/react-highlight-within-textarea
+    // formData.append("Source", source);
+    // formData.append("Target", target);
+    // formData.append(
+    //   "postContent",
+    //   e.target.querySelector("textarea[name='postContent']").value
+    // );
+
+    // TODO: proper handling of post request if proper things aren't connected
+    // add highlighting for changed words https://www.npmjs.com/package/react-highlight-within-textarea
     // add to backend the sliding scale of adding prepositions
 
-    fetch("http://localhost:8080/sourceText", {
-      method: "POST",
-      mode: "cors",
-      body: formData,
-    })
+    fetch(
+      "https://cjqt37foqc53zbfujpgyub4ctm0kwesr.lambda-url.us-west-2.on.aws/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify({
+          Source: source,
+          Target: target,
+          postContent: e.target.querySelector("textarea[name='postContent']")
+            .value,
+          Deepl: false,
+        }),
+      }
+    )
       .then((response) => {
+        console.log(response);
         if (response.status === 400) {
           return "Invalid";
         }
-        return response.text();
+        return response.json();
       })
       .then((data) => {
-        setTaResponse(data);
+        setTaResponse(data["CognateResponse"]);
       });
   };
 
@@ -85,7 +102,7 @@ export default function TextBox({ status = "empty", isReadOnly }) {
               Translate
             </Button>
           </div>
-          <Icon as={FaArrowRightLong} color="grey" boxSize={8} />
+          <Icon as={FaArrowRightLong} id="arrow" color="grey" boxSize={8} />
           <div className="talabel">
             <LanguageSelect
               id="Target"

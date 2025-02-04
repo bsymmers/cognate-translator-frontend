@@ -21,15 +21,25 @@
 }
 
 .row {
-    /* position: absolute;
-    top: 20; */
     height: 100%;
     width: 100%;
     display: flex;
-    /* padding-top: 20px; */
-    /* justify-content:space-between; */
     align-items:flex-start;
     gap: 5%;
+}
+
+@media only screen and (max-width: 768px) {
+    .row { 
+        flex-wrap: wrap;
+        gap: 5%;
+        height: auto;
+    }
+    .talabel {
+        margin-bottom: 5%;
+    }
+    #arrow {
+        display: none;
+    }
 }
 
 button[value=true] {
@@ -38,7 +48,7 @@ button[value=true] {
 
 
 #translatebutton {
-    width: 15%;
+    width: 80px;
 }
 
 .LanguageSelect {
